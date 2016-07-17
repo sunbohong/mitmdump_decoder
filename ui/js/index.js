@@ -18,6 +18,12 @@ var autoloadOptions = {
   filter: checkboxFilter,
   onEachFeature: function (feature, layer) {
     layer.bindPopup(feature.properties.title);
+    layer.on('mouseover', function (e) {
+      this.openPopup();
+    });
+    layer.on('mouseout', function (e) {
+      this.closePopup();
+    });
   }
 }
 

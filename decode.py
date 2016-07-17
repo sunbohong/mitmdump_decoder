@@ -119,6 +119,7 @@ def request(context, flow):
       print("Deserialized Request %i: %s" % (env.request_id, name))
     except:
       print("Missing Request API: %s" % name)
+      continue
 
     print(mor)
     if (key == GET_MAP_OBJECTS):
@@ -150,6 +151,7 @@ def response(context, flow):
         print("Deserialized Response %i: %s" % (env.response_id, name))
       except:
         print("Missing Response API: %s" % name)
+        continue
 
       print(mor)
       if (key == GET_MAP_OBJECTS):

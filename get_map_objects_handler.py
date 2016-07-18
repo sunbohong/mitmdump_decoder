@@ -1,3 +1,4 @@
+import os
 import numpy
 import math
 # Make pokedex requests async

@@ -39,8 +39,6 @@ class GetMapObjectsHandler:
     return self._gmo
 
   def request(self, mor, env):
-    self.request_location[env.request_id] = (env.lat, env.long)
-
     features = []
     props = {
         "id": "player",
@@ -60,7 +58,7 @@ class GetMapObjectsHandler:
     f.write(dump)
 
   def response(self, mor, env):
-    gps = self.request_location.pop(env.response_id)
+    gps = (env.lat, env.long)
     features = []
     bulk = []
 
@@ -191,7 +189,7 @@ class GetMapObjectsHandler:
     headers = {"Authorization" : "Bearer %s" % bearer}
     future = self.session.post("%s/api/push/mapobject/bulk" % endpoint, json = data, headers = headers)
     response = future.result()
-    print("API Result: %i %s" % (response.status_code, response.content))
+    #print("API Result: %i %s" % (response.status_code, response.content))
 
   def createItem(self, t, uid, point, meta):
     data = {"type" : t,

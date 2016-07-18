@@ -116,6 +116,7 @@ class GetMapObjectsHandler:
         f = Feature(geometry=p, id="wild%s" % pokemon.EncounterId, properties={
           "id": "wild%s" % pokemon.EncounterId,
           "type": "wild",
+          "pokemonNumber": pokemon.Pokemon.PokemonId,
           "TimeTillHiddenMs": pokemon.TimeTillHiddenMs,
           "WillDisappear": pokemon.TimeTillHiddenMs + pokemon.LastModifiedMs,
           "title": "Wild %s" % Custom_PokemonName.Name(pokemon.Pokemon.PokemonId),
@@ -153,6 +154,7 @@ class GetMapObjectsHandler:
             f = Feature(geometry=p, id="nearby%s" % poke.EncounterId, properties={
               "id": "nearby%s" % poke.EncounterId,
               "type": "nearby",
+              "pokemonNumber": poke.PokedexNumber,
               "title": "Nearby %s" % Custom_PokemonName.Name(poke.PokedexNumber),
               "marker-color": "FFFFFF",
               "marker-symbol": "dog-park"

@@ -23,7 +23,6 @@ try:
 except:
   bearer = ""
   endpoint = ""
-requests = FuturesSession()
 
 class GetMapObjectsHandler:
   def __init__(self):
@@ -31,6 +30,7 @@ class GetMapObjectsHandler:
     self.request_location = {}
     self._player = geojson.dumps(FeatureCollection([]))
     self._gmo = geojson.dumps(FeatureCollection([]))
+    self.session = FuturesSession()
 
   def player(self):
     return self._player
@@ -176,7 +176,8 @@ class GetMapObjectsHandler:
           except Exception, e:
             print("Error with nearby: %s" % e)
 
-    self.dumpToMap(bulk)
+      self.dumpToMap(bulk)
+      bulk = []
     fc = FeatureCollection(features)
     dump = geojson.dumps(fc, sort_keys=True)
     f = open('ui/get_map_objects.json', 'w')
@@ -185,8 +186,12 @@ class GetMapObjectsHandler:
   def dumpToMap(self, data):
     if bearer == "":
       return
+    if data == []:
+      return
     headers = {"Authorization" : "Bearer %s" % bearer}
-    r = requests.post("%s/api/push/mapobject/bulk" % endpoint, json = data, headers = headers)
+    future = self.session.post("%s/api/push/mapobject/bulk" % endpoint, json = data, headers = headers)
+    response = future.result()
+    print("API Result: %i %s" % (response.status_code, response.content))
 
   def createItem(self, t, uid, point, meta):
     data = {"type" : t,

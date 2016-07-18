@@ -53,6 +53,7 @@ def underscore_to_camelcase(value):
   return "".join(c.next()(x) if x else '_' for x in value.split("_"))
 
 def start(context, argv):
+  print("mitmdump decode helper script started")
   context.filter_methods = argv[1:]
   context.getMapObjects = GetMapObjectsHandler()
   if(len(context.filter_methods) > 0):

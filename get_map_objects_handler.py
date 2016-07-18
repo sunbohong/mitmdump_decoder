@@ -27,16 +27,7 @@ except:
 class GetMapObjectsHandler:
   def __init__(self):
     self.pokeLocation = {}
-    self.request_location = {}
-    self._player = geojson.dumps(FeatureCollection([]))
-    self._gmo = geojson.dumps(FeatureCollection([]))
     self.session = FuturesSession()
-
-  def player(self):
-    return self._player
-
-  def get_map_objects(self):
-    return self._gmo
 
   def request(self, mor, env):
     features = []

@@ -64,10 +64,6 @@ app.debug = True
 def index():
   return app.send_static_file('index.html')
 
-@app.route('/pgo.pac')
-def pac():
-  return app.send_static_file('pgo.pac')
-
 #Its possible I didn't need to make these explicit, but its late and I'm tired
 @app.route('/css/<path:filename>')
 def css(filename):

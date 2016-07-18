@@ -23,7 +23,7 @@ try:
   from secrets import bearer, endpoint
 except:
   bearer = os.getenv('POKEREV_BEARER', "")
-  endpoing = os.getenv('POKEREV_ENDPOINT', "")
+  endpoint = os.getenv('POKEREV_ENDPOINT', "")
 
 class GetMapObjectsHandler:
   def __init__(self):

@@ -24,9 +24,6 @@ from protocol.sfida_pb2 import *
 from protocol.signals_pb2 import *
 from get_map_objects_handler import GetMapObjectsHandler
 
-import flask
-from flask import Flask, request
-
 #We can often look up the right deserialization structure based on the method, but there are some deviations
 mismatched_apis = {
   'RECYCLE_INVENTORY_ITEM': 'RECYCLE_ITEM',
@@ -55,39 +52,12 @@ def underscore_to_camelcase(value):
   c = camelcase()
   return "".join(c.next()(x) if x else '_' for x in value.split("_"))
 
-
-app = Flask("events", static_folder='ui')
-app.config['SECRET_KEY'] = 'amanaplanacanalplama'
-app.debug = True
-
-@app.route('/')
-def index():
-  return app.send_static_file('index.html')
-
-#Its possible I didn't need to make these explicit, but its late and I'm tired
-@app.route('/css/<path:filename>')
-def css(filename):
-  return flask.send_from_directory(os.path.join('ui', 'css'), filename)
-
-@app.route('/js/<path:filename>')
-def js(filename):
-  return flask.send_from_directory(os.path.join('ui', 'js'), filename)
-
-@app.route('/player.json')
-def player():
-  return getMapObjects.player()
-
-@app.route('/get_map_objects.json')
-def get_map_objects():
-  return getMapObjects.get_map_objects()
-
 def start(context, argv):
-  context.app_registry.add(app, "events", 80)
   context.methods_for_request = {}
   context.filter_methods = argv[1:]
+  context.getMapObjects = GetMapObjectsHandler()
   print("Filter methods: %s; Empty is no filtering" % context.filter_methods)
 
-getMapObjects = GetMapObjectsHandler()
 
 def request(context, flow):
   if not flow.match("~u plfe"):
@@ -119,7 +89,7 @@ def request(context, flow):
 
     print(mor)
     if (key == GET_MAP_OBJECTS):
-      getMapObjects.request(mor, env)
+      context.getMapObjects.request(mor, env)
 
 def response(context, flow):
   if not flow.match("~u plfe"):
@@ -151,6 +121,6 @@ def response(context, flow):
 
       print(mor)
       if (key == GET_MAP_OBJECTS):
-        getMapObjects.response(mor, env)
+        context.getMapObjects.response(mor, env)
 
 # vim: set tabstop=2 shiftwidth=2 expandtab : #

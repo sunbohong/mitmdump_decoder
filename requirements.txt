@@ -1,5 +1,6 @@
 # This is approximate, but I welcome all PRs to make it more correct
+mitmproxy==0.17
 geojson==1.0.7
 numpy==1.9.2
 protobuf==3.0.0b3
-requests==2.10.0
+requests-futures==0.9.7

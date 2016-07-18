@@ -55,8 +55,8 @@ def underscore_to_camelcase(value):
 def start(context, argv):
   context.filter_methods = argv[1:]
   context.getMapObjects = GetMapObjectsHandler()
-  print("Filter methods: %s; Empty is no filtering" % context.filter_methods)
-
+  if(len(context.filter_methods) > 0):
+    print("Only parsing %s" % context.filter_methods)
 
 def request(context, flow):
   if not flow.match("~u plfe"):

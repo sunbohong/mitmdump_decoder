@@ -48,8 +48,8 @@ class GetMapObjectsHandler:
     f = open('ui/player.json', 'w')
     f.write(dump)
 
-  def response(self, mor, env):
-    gps = (env.lat, env.long)
+  def response(self, mor, env, req_env):
+    gps = (req_env.lat, req_env.long)
     features = []
     bulk = []
 

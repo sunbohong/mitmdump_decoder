@@ -94,12 +94,12 @@ def response(context, flow):
 
   #Extract methods from request
   try:
-    req = RpcRequestEnvelopeProto()
-    req.ParseFromString(flow.request.content)
+    req_env = RpcRequestEnvelopeProto()
+    req_env.ParseFromString(flow.request.content)
   except Exception, e:
     print("Deserializating Envelop exception: %s" % e)
     return
-  keys = deque([parameter.key for parameter in req.parameter])
+  keys = deque([parameter.key for parameter in req_env.parameter])
 
   with decoded(flow.response):
     try:
@@ -127,7 +127,7 @@ def response(context, flow):
 
       print(mor)
       if (key == GET_MAP_OBJECTS):
-        context.getMapObjects.response(mor, env)
+        context.getMapObjects.response(mor, env, req_env)
 
 def error(context, flow):
   print("Error in flow: %s" % flow.error)

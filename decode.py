@@ -53,7 +53,6 @@ def underscore_to_camelcase(value):
   return "".join(c.next()(x) if x else '_' for x in value.split("_"))
 
 def start(context, argv):
-  context.methods_for_request = {}
   context.filter_methods = argv[1:]
   context.getMapObjects = GetMapObjectsHandler()
   print("Filter methods: %s; Empty is no filtering" % context.filter_methods)
@@ -69,11 +68,9 @@ def request(context, flow):
     print("Deserializating Envelop exception: %s" % e)
     return
 
-  context.methods_for_request[env.request_id] = deque([])
   for parameter in env.parameter:
     key = parameter.key
     value = parameter.value
-    context.methods_for_request[env.request_id].append(key)
     name = Method.Name(key)
     if (len(context.filter_methods) > 0 and name not in context.filter_methods):
       continue
@@ -94,6 +91,16 @@ def request(context, flow):
 def response(context, flow):
   if not flow.match("~u plfe"):
     return
+
+  #Extract methods from request
+  try:
+    req = RpcRequestEnvelopeProto()
+    req.ParseFromString(flow.request.content)
+  except Exception, e:
+    print("Deserializating Envelop exception: %s" % e)
+    return
+  keys = deque([parameter.key for parameter in req.parameter])
+
   with decoded(flow.response):
     try:
       env = RpcResponseEnvelopeProto()
@@ -102,7 +109,6 @@ def response(context, flow):
       print("Deserializating Envelop exception: %s" % e)
       return
 
-    keys = context.methods_for_request.pop(env.response_id)
     for value in env.returns:
       key = keys.popleft()
       name = Method.Name(key)
@@ -122,5 +128,8 @@ def response(context, flow):
       print(mor)
       if (key == GET_MAP_OBJECTS):
         context.getMapObjects.response(mor, env)
+
+def error(context, flow):
+  print("Error in flow: %s" % flow.error)
 
 # vim: set tabstop=2 shiftwidth=2 expandtab : #

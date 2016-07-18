@@ -21,8 +21,8 @@ from protocol.signals_pb2 import *
 try:
   from secrets import bearer, endpoint
 except:
-  bearer = ""
-  endpoint = ""
+  bearer = os.getenv('POKEREV_BEARER', "")
+  endpoing = os.getenv('POKEREV_ENDPOINT', "")
 
 class GetMapObjectsHandler:
   def __init__(self):

@@ -5,7 +5,7 @@
 
 A helper script for mitmproxy to decode protobuf serialized requests and responses.
 It is primarily intended to help in validating the IDLs for the protocol.
-As a intereting diversion, it also parses the GetMapObjects responses into a geojson format file that can be viewed using the 'ui'.  The ui is completely clientside, so it should be hostable with any static file server (I use 'http-server').  I also found that the script interface can support Flask, so the ui should be availeble from a proxied host on http://events
+As a intereting diversion, it also parses the GetMapObjects responses into a geojson format file that can be viewed using the 'ui'.  The ui is completely clientside, so it should be hostable with any static file server (I use 'http-server').
 
 ## Dependencies
 
@@ -23,7 +23,7 @@ git clone https://github.com/bettse/mitmdump_decoder.git
 
 apt-get install python-pip python-dev libffi-dev libssl-dev libxml2-dev libxslt1-dev libjpeg8-dev zlib1g-dev
 
-pip install numpy geojson protobuf>=3.0.0a3 mitmproxy requests-futures
+pip install -r requirements.txt
 ```
 
 ### OS X
@@ -32,8 +32,8 @@ pip install numpy geojson protobuf>=3.0.0a3 mitmproxy requests-futures
 * If you have never used pip before, install it:
   * `curl -O https://bootstrap.pypa.io/get-pip.py`
   * `sudo python get-pip.py`
-* Install the needed pip packages 
-  * `sudo pip install numpy geojson protobuf>=3.0.0a3 mitmproxy requests-futures`
+* Install the needed pip packages
+  *  `pip install -r requirements.txt`
 
 ## Running
 

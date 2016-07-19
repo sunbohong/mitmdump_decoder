@@ -55,7 +55,8 @@ def underscore_to_camelcase(value):
 def start(context, argv):
   print("mitmdump decode helper script started")
   context.filter_methods = argv[1:]
-  context.filter_methods += os.getenv('FILTER_METHODS').split(',')
+  if(os.getenv('FILTER_METHODS')):
+    context.filter_methods += os.getenv('FILTER_METHODS').split(',')
   context.getMapObjects = GetMapObjectsHandler()
   if(len(context.filter_methods) > 0):
     print("Only parsing %s" % context.filter_methods)

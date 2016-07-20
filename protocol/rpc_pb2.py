@@ -3,7 +3,6 @@
 
 import sys
 _b=sys.version_info[0]<3 and (lambda x:x) or (lambda x:x.encode('latin1'))
-from google.protobuf.internal import enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
@@ -22,41 +21,11 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='rpc.proto',
   package='Holoholo.Rpc',
   syntax='proto3',
-  serialized_pb=_b('\n\trpc.proto\x12\x0cHoloholo.Rpc\x1a\x15holoholo_shared.proto\"A\n\rMapFieldEntry\x12!\n\x03key\x18\x01 \x01(\x0e\x32\x14.Holoholo.Rpc.Method\x12\r\n\x05value\x18\x02 \x01(\x0c\"6\n\x05Thing\x12\r\n\x05start\x18\x01 \x01(\x0c\x12\x11\n\ttimestamp\x18\x02 \x01(\x04\x12\x0b\n\x03\x65nd\x18\x03 \x01(\x0c\"\xb5\x03\n\x17RpcRequestEnvelopeProto\x12*\n\tdirection\x18\x01 \x01(\x0e\x32\x17.Holoholo.Rpc.Direction\x12\x12\n\nrequest_id\x18\x03 \x01(\x04\x12.\n\tparameter\x18\x04 \x03(\x0b\x32\x1b.Holoholo.Rpc.MapFieldEntry\x12\x0e\n\x06\x66ooter\x18\x06 \x01(\x0c\x12\x0b\n\x03lat\x18\x07 \x01(\x01\x12\x0c\n\x04long\x18\x08 \x01(\x01\x12\x10\n\x08\x61ltitude\x18\t \x01(\x01\x12<\n\x04\x61uth\x18\n \x01(\x0b\x32..Holoholo.Rpc.RpcRequestEnvelopeProto.AuthInfo\x12\"\n\x05thing\x18\x0b \x01(\x0b\x32\x13.Holoholo.Rpc.Thing\x12\x11\n\tunknown12\x18\x0c \x01(\x05\x1ax\n\x08\x41uthInfo\x12\x10\n\x08provider\x18\x01 \x01(\t\x12\x41\n\x05token\x18\x02 \x01(\x0b\x32\x32.Holoholo.Rpc.RpcRequestEnvelopeProto.AuthInfo.JWT\x1a\x17\n\x03JWT\x12\x10\n\x08\x63ontents\x18\x01 \x01(\t\"\xe0\x01\n\x18RpcResponseEnvelopeProto\x12*\n\tdirection\x18\x01 \x01(\x0e\x32\x17.Holoholo.Rpc.Direction\x12\x13\n\x0bresponse_id\x18\x02 \x01(\x04\x12\x0e\n\x06\x66ooter\x18\x06 \x01(\x0c\x12\x0b\n\x03lat\x18\x07 \x01(\x01\x12\x0c\n\x04long\x18\x08 \x01(\x01\x12\x10\n\x08\x61ltitude\x18\t \x01(\x01\x12\"\n\x05thing\x18\x0b \x01(\x0b\x32\x13.Holoholo.Rpc.Thing\x12\x11\n\tunknown12\x18\x0c \x01(\x05\x12\x0f\n\x07returns\x18\x64 \x03(\x0c*3\n\tDirection\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x0c\n\x08RESPONSE\x10\x01\x12\x0b\n\x07REQUEST\x10\x02P\x00\x62\x06proto3')
+  serialized_pb=_b('\n\trpc.proto\x12\x0cHoloholo.Rpc\x1a\x15holoholo_shared.proto\"A\n\rMapFieldEntry\x12!\n\x03key\x18\x01 \x01(\x0e\x32\x14.Holoholo.Rpc.Method\x12\r\n\x05value\x18\x02 \x01(\x0c\"E\n\nAuthTicket\x12\r\n\x05start\x18\x01 \x01(\x0c\x12\x1b\n\x13\x65xpire_timestamp_ms\x18\x02 \x01(\x04\x12\x0b\n\x03\x65nd\x18\x03 \x01(\x0c\"\xca\x03\n\x17RpcRequestEnvelopeProto\x12\x13\n\x0bstatus_code\x18\x01 \x01(\x04\x12\x12\n\nrequest_id\x18\x03 \x01(\x04\x12.\n\tparameter\x18\x04 \x03(\x0b\x32\x1b.Holoholo.Rpc.MapFieldEntry\x12\x0e\n\x06\x66ooter\x18\x06 \x01(\x0c\x12\x0b\n\x03lat\x18\x07 \x01(\x01\x12\x0c\n\x04long\x18\x08 \x01(\x01\x12\x10\n\x08\x61ltitude\x18\t \x01(\x01\x12<\n\x04\x61uth\x18\n \x01(\x0b\x32..Holoholo.Rpc.RpcRequestEnvelopeProto.AuthInfo\x12-\n\x0b\x61uth_ticket\x18\x0b \x01(\x0b\x32\x18.Holoholo.Rpc.AuthTicket\x12\x18\n\x10protocol_version\x18\x0c \x01(\x03\x1a\x91\x01\n\x08\x41uthInfo\x12\x10\n\x08provider\x18\x01 \x01(\t\x12\x41\n\x05token\x18\x02 \x01(\x0b\x32\x32.Holoholo.Rpc.RpcRequestEnvelopeProto.AuthInfo.JWT\x1a\x30\n\x03JWT\x12\x10\n\x08\x63ontents\x18\x01 \x01(\t\x12\x17\n\x0f\x63ontents_length\x18\x02 \x01(\x05\"\x85\x01\n\x18RpcResponseEnvelopeProto\x12\x13\n\x0bstatus_code\x18\x01 \x01(\x04\x12\x13\n\x0bresponse_id\x18\x02 \x01(\x04\x12\x0f\n\x07\x61pi_url\x18\x03 \x01(\t\x12\x0e\n\x06\x66ooter\x18\x06 \x01(\x0c\x12\x0f\n\x07returns\x18\x64 \x03(\x0c\x12\r\n\x05\x65rror\x18\x65 \x01(\tP\x00\x62\x06proto3')
   ,
   dependencies=[holoholo__shared__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-_DIRECTION = _descriptor.EnumDescriptor(
-  name='Direction',
-  full_name='Holoholo.Rpc.Direction',
-  filename=None,
-  file=DESCRIPTOR,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='UNKNOWN', index=0, number=0,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='RESPONSE', index=1, number=1,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='REQUEST', index=2, number=2,
-      options=None,
-      type=None),
-  ],
-  containing_type=None,
-  options=None,
-  serialized_start=840,
-  serialized_end=891,
-)
-_sym_db.RegisterEnumDescriptor(_DIRECTION)
-
-Direction = enum_type_wrapper.EnumTypeWrapper(_DIRECTION)
-UNKNOWN = 0
-RESPONSE = 1
-REQUEST = 2
 
 
 
@@ -98,29 +67,29 @@ _MAPFIELDENTRY = _descriptor.Descriptor(
 )
 
 
-_THING = _descriptor.Descriptor(
-  name='Thing',
-  full_name='Holoholo.Rpc.Thing',
+_AUTHTICKET = _descriptor.Descriptor(
+  name='AuthTicket',
+  full_name='Holoholo.Rpc.AuthTicket',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='start', full_name='Holoholo.Rpc.Thing.start', index=0,
+      name='start', full_name='Holoholo.Rpc.AuthTicket.start', index=0,
       number=1, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='timestamp', full_name='Holoholo.Rpc.Thing.timestamp', index=1,
+      name='expire_timestamp_ms', full_name='Holoholo.Rpc.AuthTicket.expire_timestamp_ms', index=1,
       number=2, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='end', full_name='Holoholo.Rpc.Thing.end', index=2,
+      name='end', full_name='Holoholo.Rpc.AuthTicket.end', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
@@ -139,7 +108,7 @@ _THING = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=117,
-  serialized_end=171,
+  serialized_end=186,
 )
 
 
@@ -157,6 +126,13 @@ _RPCREQUESTENVELOPEPROTO_AUTHINFO_JWT = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='contents_length', full_name='Holoholo.Rpc.RpcRequestEnvelopeProto.AuthInfo.JWT.contents_length', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -169,8 +145,8 @@ _RPCREQUESTENVELOPEPROTO_AUTHINFO_JWT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=588,
-  serialized_end=611,
+  serialized_start=599,
+  serialized_end=647,
 )
 
 _RPCREQUESTENVELOPEPROTO_AUTHINFO = _descriptor.Descriptor(
@@ -206,8 +182,8 @@ _RPCREQUESTENVELOPEPROTO_AUTHINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=491,
-  serialized_end=611,
+  serialized_start=502,
+  serialized_end=647,
 )
 
 _RPCREQUESTENVELOPEPROTO = _descriptor.Descriptor(
@@ -218,8 +194,8 @@ _RPCREQUESTENVELOPEPROTO = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='direction', full_name='Holoholo.Rpc.RpcRequestEnvelopeProto.direction', index=0,
-      number=1, type=14, cpp_type=8, label=1,
+      name='status_code', full_name='Holoholo.Rpc.RpcRequestEnvelopeProto.status_code', index=0,
+      number=1, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -274,15 +250,15 @@ _RPCREQUESTENVELOPEPROTO = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='thing', full_name='Holoholo.Rpc.RpcRequestEnvelopeProto.thing', index=8,
+      name='auth_ticket', full_name='Holoholo.Rpc.RpcRequestEnvelopeProto.auth_ticket', index=8,
       number=11, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='unknown12', full_name='Holoholo.Rpc.RpcRequestEnvelopeProto.unknown12', index=9,
-      number=12, type=5, cpp_type=1, label=1,
+      name='protocol_version', full_name='Holoholo.Rpc.RpcRequestEnvelopeProto.protocol_version', index=9,
+      number=12, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -299,8 +275,8 @@ _RPCREQUESTENVELOPEPROTO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=174,
-  serialized_end=611,
+  serialized_start=189,
+  serialized_end=647,
 )
 
 
@@ -312,8 +288,8 @@ _RPCRESPONSEENVELOPEPROTO = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='direction', full_name='Holoholo.Rpc.RpcResponseEnvelopeProto.direction', index=0,
-      number=1, type=14, cpp_type=8, label=1,
+      name='status_code', full_name='Holoholo.Rpc.RpcResponseEnvelopeProto.status_code', index=0,
+      number=1, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -326,51 +302,30 @@ _RPCRESPONSEENVELOPEPROTO = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='footer', full_name='Holoholo.Rpc.RpcResponseEnvelopeProto.footer', index=2,
+      name='api_url', full_name='Holoholo.Rpc.RpcResponseEnvelopeProto.api_url', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='footer', full_name='Holoholo.Rpc.RpcResponseEnvelopeProto.footer', index=3,
       number=6, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='lat', full_name='Holoholo.Rpc.RpcResponseEnvelopeProto.lat', index=3,
-      number=7, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='long', full_name='Holoholo.Rpc.RpcResponseEnvelopeProto.long', index=4,
-      number=8, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='altitude', full_name='Holoholo.Rpc.RpcResponseEnvelopeProto.altitude', index=5,
-      number=9, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='thing', full_name='Holoholo.Rpc.RpcResponseEnvelopeProto.thing', index=6,
-      number=11, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='unknown12', full_name='Holoholo.Rpc.RpcResponseEnvelopeProto.unknown12', index=7,
-      number=12, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='returns', full_name='Holoholo.Rpc.RpcResponseEnvelopeProto.returns', index=8,
+      name='returns', full_name='Holoholo.Rpc.RpcResponseEnvelopeProto.returns', index=4,
       number=100, type=12, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='error', full_name='Holoholo.Rpc.RpcResponseEnvelopeProto.error', index=5,
+      number=101, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -386,25 +341,21 @@ _RPCRESPONSEENVELOPEPROTO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=614,
-  serialized_end=838,
+  serialized_start=650,
+  serialized_end=783,
 )
 
 _MAPFIELDENTRY.fields_by_name['key'].enum_type = holoholo__shared__pb2._METHOD
 _RPCREQUESTENVELOPEPROTO_AUTHINFO_JWT.containing_type = _RPCREQUESTENVELOPEPROTO_AUTHINFO
 _RPCREQUESTENVELOPEPROTO_AUTHINFO.fields_by_name['token'].message_type = _RPCREQUESTENVELOPEPROTO_AUTHINFO_JWT
 _RPCREQUESTENVELOPEPROTO_AUTHINFO.containing_type = _RPCREQUESTENVELOPEPROTO
-_RPCREQUESTENVELOPEPROTO.fields_by_name['direction'].enum_type = _DIRECTION
 _RPCREQUESTENVELOPEPROTO.fields_by_name['parameter'].message_type = _MAPFIELDENTRY
 _RPCREQUESTENVELOPEPROTO.fields_by_name['auth'].message_type = _RPCREQUESTENVELOPEPROTO_AUTHINFO
-_RPCREQUESTENVELOPEPROTO.fields_by_name['thing'].message_type = _THING
-_RPCRESPONSEENVELOPEPROTO.fields_by_name['direction'].enum_type = _DIRECTION
-_RPCRESPONSEENVELOPEPROTO.fields_by_name['thing'].message_type = _THING
+_RPCREQUESTENVELOPEPROTO.fields_by_name['auth_ticket'].message_type = _AUTHTICKET
 DESCRIPTOR.message_types_by_name['MapFieldEntry'] = _MAPFIELDENTRY
-DESCRIPTOR.message_types_by_name['Thing'] = _THING
+DESCRIPTOR.message_types_by_name['AuthTicket'] = _AUTHTICKET
 DESCRIPTOR.message_types_by_name['RpcRequestEnvelopeProto'] = _RPCREQUESTENVELOPEPROTO
 DESCRIPTOR.message_types_by_name['RpcResponseEnvelopeProto'] = _RPCRESPONSEENVELOPEPROTO
-DESCRIPTOR.enum_types_by_name['Direction'] = _DIRECTION
 
 MapFieldEntry = _reflection.GeneratedProtocolMessageType('MapFieldEntry', (_message.Message,), dict(
   DESCRIPTOR = _MAPFIELDENTRY,
@@ -413,12 +364,12 @@ MapFieldEntry = _reflection.GeneratedProtocolMessageType('MapFieldEntry', (_mess
   ))
 _sym_db.RegisterMessage(MapFieldEntry)
 
-Thing = _reflection.GeneratedProtocolMessageType('Thing', (_message.Message,), dict(
-  DESCRIPTOR = _THING,
+AuthTicket = _reflection.GeneratedProtocolMessageType('AuthTicket', (_message.Message,), dict(
+  DESCRIPTOR = _AUTHTICKET,
   __module__ = 'rpc_pb2'
-  # @@protoc_insertion_point(class_scope:Holoholo.Rpc.Thing)
+  # @@protoc_insertion_point(class_scope:Holoholo.Rpc.AuthTicket)
   ))
-_sym_db.RegisterMessage(Thing)
+_sym_db.RegisterMessage(AuthTicket)
 
 RpcRequestEnvelopeProto = _reflection.GeneratedProtocolMessageType('RpcRequestEnvelopeProto', (_message.Message,), dict(
 

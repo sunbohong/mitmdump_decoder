@@ -88,6 +88,12 @@ function customStyle(f, latlon) {
     var marker = simplestyle(f, latlon);
     var properties = f.properties;
 
+    if (properties.distance > 0) {
+      var marker = L.circle(latlon, properties.distance, {
+        fill: false,
+      });
+    }
+
     if (properties.type == 'pokestop') {
       if(properties.lure){
           marker.setIcon(pokestopLureIcon);
@@ -97,11 +103,11 @@ function customStyle(f, latlon) {
     } else if (properties.type == 'pokemon') {
       marker.setIcon(pokemonIcon);
     } else if (properties.type == 'gym') {
-        if (properties.title == "Blue Gym") {
+        if (properties.team == "TEAM_BLUE") {
             marker.setIcon(blueGymIcon);
-        } else if (properties.title == "Red Gym") {
+        } else if (properties.team == "TEAM_RED") {
             marker.setIcon(redGymIcon);
-        } else if (properties.title == "Yellow Gym") {
+        } else if (properties.team == "TEAM_YELLOW") {
             marker.setIcon(yellowGymIcon);
         } else {
           marker.setIcon(neutralGymIcon);
@@ -134,10 +140,7 @@ var redGymIcon = new GymIcon({iconUrl: 'img/arena_red.png'});
 var yellowGymIcon = new GymIcon({iconUrl: 'img/arena_yellow.png'});
 var neutralGymIcon = new GymIcon({iconUrl: 'img/arena_white.png'});
 
-var pokemonIcon = new PokemonIcon({iconUrl: 'img/pokeballmarker.png'});
-var uncommonIcon = new PokemonIcon({iconUrl: 'img/greatballmarker.png'});
-var rareIcon = new PokemonIcon({iconUrl: 'img/ultraballmarker.png'});
-var legendaryIcon = new PokemonIcon({iconUrl: 'img/masterballmarker.png'});
+var pokemonIcon = new PokemonIcon({iconUrl: 'img/pokemon.png'});
 
-var pokestopLureIcon = new PokestopIcon({iconUrl: 'img/pokestoppink.png'});
 var pokestopIcon = new PokestopIcon({iconUrl: 'img/pokestop.png'});
+var pokestopLureIcon = new PokestopIcon({iconUrl: 'img/pokestoppink.png'});

@@ -1,5 +1,5 @@
 # This is approximate, but I welcome all PRs to make it more correct
-mitmproxy==0.17
+mitmproxy==1.0.0
 geojson==1.0.7
 numpy==1.9.2
 protobuf==3.0.0b3
